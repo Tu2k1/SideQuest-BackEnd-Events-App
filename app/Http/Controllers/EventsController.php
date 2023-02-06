@@ -16,7 +16,8 @@ class EventsController extends Controller
     {
         $events = DB::table('events')->get()->toJson();
 
-        return view('events')->with('events',$events);
+        //return view('events')->with('events',$events);
+        return $events;
     }
 
     /**
@@ -53,10 +54,19 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($input)
     {
-        $event = DB::table('events')->where('id', $id)->get();
-        return view ('event')->with('event',$event);
+        $val = intval($input);
+        if ($val > 0){
+            $event = DB::table('events')->where('id',$val)->get();
+            //return view ('event')->with('event',$event);
+            return $event;
+        }
+        else{
+            $event = DB::table('events')->where('category', $input)->get();
+            //return view ('event')->with('event',$event);
+            return $event;
+        }
     }
 
     /**

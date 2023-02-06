@@ -27,7 +27,15 @@ Route::get('users', 'App\Http\Controllers\UsersController@index');
 Route::get('users/{id}', 'App\Http\Controllers\UsersController@show');
 
 
-// trophy challenge: Create an event
 
+// trophy challenge EASY: Create an endpoint to filter events by category:
+Route::get('events/{category}', 'App\Http\Controllers\EventsController@show');
+
+// trophy challenge MEDUIM: Create an endpoint to create an event:
 Route::get('event/create','App\Http\Controllers\EventsController@create');
 Route::post('event/store','App\Http\Controllers\EventsController@store');
+
+
+
+// trophy challenge HARD: Create a relation between user and event
+Route::get('user/{id}/events', 'App\Http\Controllers\UsersController@show_user_events');

@@ -14,7 +14,8 @@ class UsersController extends Controller
     public function index()
     {
         $users = DB::table('users')->get();
-        return view('users')->with('users',$users);
+        //return view('users')->with('users',$users);
+        return $users;
     }
 
     /**
@@ -47,9 +48,13 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = DB::table('users')->where('id', $id)->get();
-        return view('user')->with('user',$user);
+        //return view('user')->with('user',$user);
+        return $user;
     }
-
+    public function show_user_events($id){
+        $events = DB::table('events')->where('user_id', $id)->get();
+        return $events;
+    }
     /**
      * Show the form for editing the specified resource.
      *
